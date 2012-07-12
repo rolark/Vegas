@@ -1,0 +1,384 @@
+ClrHome
+CoordOff
+AxesOff
+{2,7}→dim([G])
+Output(4,3,"IN VEGAS 2.5")
+Output(5,4,"CASINO JOE"
+200→N
+For(M,1,8)
+For(D,1,10)
+N+2-1/4
+End
+Output(3,2,"O*O*O*O*O*O*O*")
+Output(6,2,"*O*O*O*O*O*O*O")
+Output(4,2,"*")
+Output(5,2,"O")
+Output(4,15,"O":Output(5,15,"*"
+For(Y,1,10)
+N+2-1/4
+End
+Output(3,2,"*O*O*O*O*O*O*O")
+Output(6,2,"O*O*O*O*O*O*O*")
+Output(4,2,"O")
+Output(5,2,"*")
+Output(4,15,"*")
+Output(5,15,"O")
+End
+Lbl 8
+Menu("VEGAS","GAMBLE",51,"NEW GAME",27,"ABOUT",2,"HIGH SCORE",13,"QUIT",3)
+Lbl 51
+[G](1,1)→M
+[G](1,3)→H
+[G](1,4)→L
+If M≤0
+Then
+Goto 27
+End
+Goto 11
+Lbl 2
+ClrHome
+Output(5,2,"ROLAND OSBORNE"
+Output(4,2,"COPYRIGHT 1999"
+Pause 
+Goto 8
+Lbl 27
+9→M
+1→H
+0→L
+0→[G](1,5)
+0→[G](1,6)
+9→[G](1,7)
+ClrHome
+Input "YOUR NAME:",Str7
+Goto 1
+Lbl 13
+ClrHome
+Disp "HIGH SCORE:"
+Disp [G](1,2)
+Disp Str6
+Pause 
+Goto 8
+Lbl 3
+ClrHome
+AxesOn
+CoordOn
+Stop
+Lbl 1
+ClrHome
+Menu("VEGAS","BET AGAIN",5,"NEW BET",4,"MAKE A LOAN",25,"REPAY LOAN",26,"USE BONUS ITEM",34,"VIEW STATS",91,"BACK",12)
+Lbl 91
+ClrDraw
+Horizontal 9.8
+Horizontal 7
+Text(2,10,Str7)
+Text(20,10,"MONEY:")
+Text(20,38,M)
+Text(28,10,"LOAN:")
+Text(28,34,L)
+Text(36,10,"BONUSES:")
+Text(44,20,"NO LOSS:")
+Text(44,52,[G](1,6))
+Text(52,20,"2*MONEY:")
+Text(52,56,[G](1,5))
+Pause 
+Goto 1
+Lbl 34
+Menu("BONUS ITEMS","NO LOSS",81,"2*MONEY",82,"BACK",1)
+Lbl 81
+If [G](1,6)≥1
+Then
+[G](1,7)→M
+[G](1,6)-1→[G](1,6)
+End
+Goto 1
+Lbl 82
+If [G](1,5)≥1
+Then
+(M-L)*2→M
+[G](1,5)-1→[G](1,5)
+End
+Goto 1
+Lbl 25
+ClrHome
+Disp "MAKE A LOAN:"
+Disp "RATE IS 15"
+Output(7,1,"MONEY:")
+Output(7,8,M)
+Output(8,1,"LOAN:")
+Output(8,7,L)
+Input "HOW MUCH?",X
+If X=0
+Then
+Goto 1
+End
+If M-L≤0
+Then
+Goto 1
+End
+If 2(M-L)<X+L
+Then
+Goto 25
+End
+If X<0
+Then
+Goto 25
+End
+X+M→M
+X+L→L
+Goto 1
+Lbl 26
+ClrHome
+Disp "PAY BACK LOAN:"
+Output(7,1,"MONEY:")
+Output(7,8,M)
+Output(8,1,"LOAN:")
+Output(8,7,L)
+Input "PAY HOW MUCH?",X
+If X<0
+Then
+Goto 26
+End
+If X>L
+Then
+Goto 26
+End
+M-X→M
+L-X→L
+Goto 1
+Lbl 11
+[G](1,1)→M
+[G](1,3)→H
+[G](1,4)→L
+Goto 1
+Lbl 12
+M→[G](1,1)
+H→[G](1,3)
+L→[G](1,4)
+[G](1,2)→I
+If I<M-L
+Then
+Goto 14
+End
+Goto 8
+Lbl 14
+ClrHome
+Disp "NEW HIGH SCORE"
+Disp " "
+Str7→Str6
+Disp Str6
+Disp " "
+Disp "SCORE:"
+Disp M
+Pause 
+M→[G](1,2)
+Goto 8
+Lbl 52
+ClrHome
+Disp "YOU GOT MUGGED"
+Disp "YOU LOST:"
+M/2→X
+round(X,0)→X
+X/2→S
+round(S,0)→S
+round(M,0)→E
+randInt(X,E-S)→X
+Disp X
+M-X→M
+Pause 
+Goto 1
+Lbl 85
+ClrHome
+[G](1,5)+1→[G](1,5)
+Disp "1 2*MONEY BOOST"
+Pause 
+Goto 1
+Lbl 86
+ClrHome
+[G](1,6)+1→[G](1,6)
+Disp "1 NO LOSS CARD"
+Pause 
+Goto 1
+Lbl 32
+ClrHome
+Disp "YOU WERE HIT"
+Disp "BY A CAR"
+round(M/3,0)→W
+randInt(1,W)→K
+Output(4,1,"PAY")
+Output(4,5,K)
+M-K→M
+Pause 
+Goto 1
+Lbl 51
+ClrHome
+Disp "CHEAT"
+Input "ADD:",K
+K+M→M
+([G]2,2)
+Goto 1
+Lbl 42
+ClrHome
+M/2→S
+round(S,0)→S
+round(M,0)→X
+randInt(S,X)→X
+Output(1,1,"DEAD UNCLES WILL:")
+Output(2,8,X)
+Pause 
+M+X→M
+Goto 1
+Lbl 6
+Disp "NOT ENOUGH MONEY"
+Disp "BET AGAIN"
+Pause 
+Lbl 4
+ClrHome
+Disp "MONEY"
+Disp M
+Disp " "
+Input "HOW MUCH?",H
+If M<0
+Then
+Goto 9
+End
+If H>M
+Then
+Goto 6
+End
+If H<0
+Then
+Goto 4
+End
+Lbl 5
+ClrDraw
+1→B
+getKey→K
+If K=61
+Then
+Goto 51
+End
+randInt(1,150)→P
+If P=21
+Then
+Goto 52
+End
+If P=72
+Then
+Goto 32
+End
+If P=86
+Then
+Goto 42
+End
+If P≤2
+Then
+Goto 85
+End
+If P≥140
+Then
+Goto 86
+End
+randInt(1,10)→R
+ZStandard
+Text(3,3,"VEGAS 2.5")
+Text(54,3,"MONEY:")
+Text(48,3,"BET:")
+Text(54,27,M)
+Text(48,19,H)
+Text(42,3,"LOAN:")
+Text(42,23,L)
+Line(0,3,8,3)
+Line(0,–3,0,3)
+Line(0,–3,8,–3)
+Line(0,–2,8,–2)
+Line(8,–3,8,3)
+Line(1,3,1,6)
+Line(1,6,7,6)
+Line(7,6,7,3)
+Line(.2,3,.2,–3)
+Line(7.8,3,7.8,–3)
+Text(14,57,"VEGAS")
+For(X,22,34)
+Text(X,43,"O")
+For(Y,1,10)
+End
+End
+M→[G](1,7)
+For(X,34,22,–1)
+Text(X,43,"O")
+For(Y,1,10)
+End
+End
+If H>M
+Then
+Goto 6
+End
+M-H→M
+For(U,1,R)
+If B≠9
+Then
+B+1→B
+Else
+1→B
+End
+randInt(1,9)→E
+randInt(1,9)→F
+Text(25,57,B)
+Text(25,65,E)
+Text(25,73,F)
+End
+randInt(1,10)→R
+For(U,1,R)
+If E≠9
+Then
+E+1→E
+Else
+1→E
+End
+randInt(1,9)→F
+Text(25,65,E)
+Text(25,73,F)
+End
+randInt(1,10,R)
+For(U,1,R)
+If F≠9
+Then
+F+1→F
+Else
+1→F
+End
+Text(25,73,F)
+End
+If B=E and E=F
+Then
+randInt(20,100)→A
+(H/2)*A+H+M→M
+End
+If B=E ?r E=F ?r B=F
+Then
+randInt(1,5)→A
+(H/2)*A+H+M→M
+End
+If B+E+F=15 and B=E
+Then
+50*H+M→M
+End
+L*.15→X
+M-X→M
+If M≤0
+Then
+ClrHome
+Goto 9
+End
+Text(54,27,"                ")
+Text(54,27,M)
+Pause 
+Goto 1
+Lbl 9
+Disp "YOU ARE BROKE"
+Pause 
+If [G](1,6)>0
+Then
+Goto 34
+End
+Goto 12
